@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEFF AI – Computer Networks Class 12 | All PYQs & HOTS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+  :root {
+    --bg: #080b10;
+    --card: #0e1118;
+    --card2: #111520;
+    --border: #1a2030;
+    --accent: #00e5ff;
+    --accent2: #ff6b35;
+    --accent3: #a8ff3e;
+    --accent4: #bf5fff;
+    --text: #b8cce0;
+    --muted: #4a5a72;
+    --white: #eef4ff;
+    --gold: #ffd166;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.72;
+    min-height: 100vh;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(0,229,255,0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(168,255,62,0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 0 18px 60px; position: relative; z-index: 1; }
+
+  /* ── JEFF AI TOP BAR ── */
+  .jeff-topbar {
+    background: linear-gradient(135deg, #0a0d16, #0e1520);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+
+  .jeff-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .jeff-topbar-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .jeff-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  /* ── HEADER ── */
+  header {
+    padding: 40px 0 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .badge-blue { color: var(--accent); border: 1px solid rgba(0,229,255,0.35); background: rgba(0,229,255,0.04); }
+  .badge-green { color: var(--accent3); border: 1px solid rgba(168,255,62,0.35); background: rgba(168,255,62,0.04); }
+  .badge-orange { color: var(--accent2); border: 1px solid rgba(255,107,53,0.35); background: rgba(255,107,53,0.04); }
+  .badge-purple { color: var(--accent4); border: 1px solid rgba(191,95,255,0.35); background: rgba(191,95,255,0.04); }
+
+  header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 8vw, 72px);
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  header h1 span { color: var(--accent); }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .stats {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 3px;
+    min-width: 80px;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+
+  .tab:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+  .tab.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.07); }
+
+  /* ── SECTION ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .section-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── TOPIC HEADERS ── */
+  .topic { margin-bottom: 32px; }
+
+  .topic-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .topic-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── QUESTION CARDS ── */
+  .q-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-left-color 0.15s;
+  }
+
+  .q-card:hover { border-left-color: var(--muted); }
+  .q-card.open, .q-card:hover.open { border-left-color: var(--accent); }
+  .q-card.hots { border-left-color: rgba(255,107,53,0.4); }
+  .q-card.hots.open { border-left-color: var(--accent2); }
+  .q-card.case { border-left-color: rgba(168,255,62,0.4); }
+  .q-card.case.open { border-left-color: var(--accent3); }
+  .q-card.sqp { border-left-color: rgba(191,95,255,0.4); }
+  .q-card.sqp.open { border-left-color: var(--accent4); }
+  .q-card.comp { border-left-color: rgba(255,209,102,0.4); }
+  .q-card.comp.open { border-left-color: var(--gold); }
+
+  .q-header {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .q-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: var(--accent);
+    min-width: 26px;
+    padding-top: 3px;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .q-card.hots .q-num { color: var(--accent2); }
+  .q-card.case .q-num { color: var(--accent3); }
+  .q-card.sqp .q-num { color: var(--accent4); }
+  .q-card.comp .q-num { color: var(--gold); }
+
+  .q-text {
+    font-size: 13.5px;
+    color: var(--white);
+    flex: 1;
+    line-height: 1.6;
+  }
+
+  .q-meta {
+    display: flex; gap: 6px; align-items: flex-start; flex-shrink: 0;
+    flex-wrap: wrap; justify-content: flex-end; min-width: 90px;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .tag-year { background: #0d1525; color: #7090ff; border: 1px solid #1a2545; }
+  .tag-marks { background: #0d1a10; color: var(--accent3); border: 1px solid #1a3520; }
+  .tag-hots { background: #1a100a; color: var(--accent2); border: 1px solid #3a2015; }
+  .tag-imp { background: #0d1a18; color: #00ffb3; border: 1px solid #1a3530; }
+  .tag-sqp { background: #150d1a; color: var(--accent4); border: 1px solid #2a1535; }
+  .tag-comp { background: #1a1600; color: var(--gold); border: 1px solid #352c00; }
+  .tag-mcq { background: #101a10; color: #88ff88; border: 1px solid #1a3020; }
+
+  .chevron {
+    font-size: 10px;
+    color: var(--muted);
+    transition: transform 0.18s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .q-card.open .chevron { transform: rotate(180deg); }
+
+  .q-answer {
+    display: none;
+    padding: 0 14px 14px 52px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.78;
+  }
+
+  .q-card.open .q-answer { display: block; }
+
+  .q-answer p { margin-bottom: 7px; }
+  .q-answer ul, .q-answer ol { margin: 7px 0 7px 18px; }
+  .q-answer li { margin-bottom: 3px; }
+  .q-answer strong { color: var(--white); }
+  .q-answer em { color: var(--muted); font-style: italic; }
+
+  .ans-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-top: 10px;
+    display: block;
+  }
+
+  .q-card.hots .q-answer .ans-label { color: var(--accent2); }
+  .q-card.case .q-answer .ans-label { color: var(--accent3); }
+  .q-card.sqp .q-answer .ans-label { color: var(--accent4); }
+  .q-card.comp .q-answer .ans-label { color: var(--gold); }
+
+  table.t {
+    width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12.5px;
+  }
+  table.t th, table.t td {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.t th {
+    background: #0e1520;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  table.t tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+  pre.layout {
+    color: var(--accent3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 10px 14px;
+    background: #090d13;
+    border-radius: 3px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+
+  /* Expand btn */
+  .expand-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    transition: all 0.15s;
+  }
+  .expand-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+
+  /* Year divider */
+  .year-div {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 18px 0 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .year-div::before, .year-div::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── JEFF AI FOOTER ── */
+  footer {
+    margin-top: 60px;
+    border-top: 1px solid var(--border);
+    padding: 22px 0 10px;
+    text-align: center;
+  }
+
+  .jeff-footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .jeff-footer-credit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .jeff-footer-credit span { color: var(--accent2); }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── JEFF AI TOP BAR ── -->
+<div class="jeff-topbar">
+  <div class="jeff-dot"></div>
+  <div class="jeff-logo">JEFF AI</div>
+  <div class="jeff-topbar-sub">Class 12 · Computer Networks · All PYQs + HOTS + SQP</div>
+  <div class="jeff-dot"></div>
+</div>
+
+<div class="container">
+
+  <header>
+    <div class="badge-row">
+      <span class="badge badge-blue">CBSE Class XII · CS (083)</span>
+      <span class="badge badge-green">Board 2008–2025 ✓</span>
+      <span class="badge badge-purple">SQP 2025-26 ✓</span>
+      <span class="badge badge-orange">HOTS + Competency ✓</span>
+    </div>
+    <h1>COMPUTER <span>NETWORKS</span></h1>
+    <div class="subtitle">Complete PYQ Bank · HOTS · SQPs · Competency Questions · Verified Against Original Papers</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">80+</span><span class="stat-label">Questions</span></div>
+      <div class="stat"><span class="stat-num">18</span><span class="stat-label">Years</span></div>
+      <div class="stat"><span class="stat-num">7</span><span class="stat-label">Tabs</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Verified</span></div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showSection('basics','this')">Basics &amp; Devices</button>
+    <button class="tab" onclick="showSection('topology','this')">Topology &amp; Media</button>
+    <button class="tab" onclick="showSection('protocols','this')">Protocols &amp; Internet</button>
+    <button class="tab" onclick="showSection('security','this')">Security &amp; Ethics</button>
+    <button class="tab" onclick="showSection('hots','this')">HOTS + Competency</button>
+    <button class="tab" onclick="showSection('case','this')">Case-Based (5M)</button>
+    <button class="tab" onclick="showSection('sqp','this')">SQP 2025-26</button>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 1: BASICS & DEVICES
+  ════════════════════════════════════ -->
+  <div class="section active" id="basics">
+    <div class="section-title">Networking Basics &amp; Devices</div>
+    <div class="section-desc">1–2 mark questions on network types, hardware devices, and definitions. Sourced from CBSE Board Papers 2008–2025.</div>
+    <button class="expand-btn" onclick="expandAll('basics',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">Network Types & Definitions</div>
+      <div class="q-list">
+
+        <div class="year-div">2024 Board — MCQ</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q1</span>
+            <span class="q-text">Which of the following is the correct unit of measurement for network bandwidth?<br>(a) KB &nbsp; (b) Bit &nbsp; (c) Hz &nbsp; (d) Km</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2024</span><span class="tag tag-marks">1M</span><span class="tag tag-mcq">MCQ</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(b) Bit</strong> — Network bandwidth is measured in bits per second (bps), or multiples like Kbps, Mbps, Gbps. KB is for file size; Hz is for frequency; Km is for distance.</p>
+          </div>
+        </div>
+
+        <div class="year-div">2025 Board — MCQ &amp; Fill-in-the-Blank</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q2</span>
+            <span class="q-text">Which of the following networking devices is used to regenerate and transmit the weakened signal ahead?<br>(A) Hub &nbsp; (B) Ethernet Card &nbsp; (C) Repeater &nbsp; (D) Modem</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2025</span><span class="tag tag-marks">1M</span><span class="tag tag-mcq">MCQ</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(C) Repeater</strong> — A repeater regenerates and amplifies weakened signals in a network to extend transmission distance. Hub distributes signals; Ethernet card connects a PC to a network; Modem modulates/demodulates for internet access.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q3</span>
+            <span class="q-text">Which of the following options is the correct protocol used for phone calls over the Internet?<br>(A) PPP &nbsp; (B) FTP &nbsp; (C) HTTP &nbsp; (D) VoIP</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2025</span><span class="tag tag-marks">1M</span><span class="tag tag-mcq">MCQ</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(D) VoIP</strong> — Voice over Internet Protocol (VoIP) is designed for voice communication over IP networks. Examples: Skype, WhatsApp calls, Zoom. PPP = point-to-point link; FTP = file transfer; HTTP = web pages.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q4</span>
+            <span class="q-text">Expand ARPANET.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2025</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>ARPANET</strong> = <strong>A</strong>dvanced <strong>R</strong>esearch <strong>P</strong>rojects <strong>A</strong>gency <strong>Net</strong>work. It was the first packet-switching network developed by the U.S. Department of Defense in the 1960s–70s, and is considered the precursor to the modern Internet.</p>
+          </div>
+        </div>
+
+        <div class="year-div">2024 Board — Protocol MCQ</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q5</span>
+            <span class="q-text">Which protocol out of the following is used to send and receive emails over a computer network?<br>(a) PPP &nbsp; (b) HTTP &nbsp; (c) FTP &nbsp; (d) SMTP</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2024</span><span class="tag tag-marks">1M</span><span class="tag tag-mcq">MCQ</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(d) SMTP</strong> — Simple Mail Transfer Protocol is used to <em>send</em> emails. POP3/IMAP are used to receive. FTP = file transfer; HTTP = web browsing; PPP = point-to-point connection.</p>
+          </div>
+        </div>
+
+        <div class="year-div">2024 SQP — Bluetooth / PAN</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q6</span>
+            <span class="q-text">Riya wants to transfer pictures from her mobile phone to her laptop. She uses Bluetooth technology to connect the two devices. Which type of network will be formed in this case?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023-24</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>PAN (Personal Area Network)</strong> — A PAN is the interconnection of devices within the range of an individual person, typically within 10 metres. Bluetooth technology creates PANs for short-range wireless communication between personal devices such as phones, laptops, and headphones.</p>
+          </div>
+        </div>
+
+        <div class="year-div">2024 SQP — Fill in the Blank</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q7</span>
+            <span class="q-text">_______ is a set of rules that needs to be followed by the communicating parties in order to have successful and reliable data communication over a network.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2024</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Protocol</strong> — A protocol defines the format, timing, sequencing, and error checking rules for communication between devices. Examples: HTTP, FTP, TCP/IP.</p>
+          </div>
+        </div>
+
+        <div class="year-div">Board 2011 — HOTS</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q8</span>
+            <span class="q-text">Which of the following is NOT a feature of networking?<br>(i) Resource sharing &nbsp;(ii) Uninterrupted Power Supply (UPS) &nbsp;(iii) Reduced cost &nbsp;(iv) Reliability</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi/AI 2011</span><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(ii) Uninterrupted Power Supply (UPS)</strong> — UPS is a hardware power backup device, completely unrelated to networking. Resource sharing, reduced cost, and reliability are all genuine features and benefits of computer networks.</p>
+          </div>
+        </div>
+
+        <div class="year-div">Board 2018–2020</div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q9</span>
+            <span class="q-text">Differentiate between LAN, MAN, and WAN.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2018</span><span class="tag tag-marks">3M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Feature</th><th>LAN</th><th>MAN</th><th>WAN</th></tr>
+              <tr><td>Full Form</td><td>Local Area Network</td><td>Metropolitan Area Network</td><td>Wide Area Network</td></tr>
+              <tr><td>Range</td><td>Up to 1 km (campus)</td><td>10–100 km (city)</td><td>Worldwide</td></tr>
+              <tr><td>Speed</td><td>Very High (1–10 Gbps)</td><td>High (100 Mbps)</td><td>Moderate (varies)</td></tr>
+              <tr><td>Example</td><td>School/Office LAN</td><td>City cable TV network</td><td>Internet</td></tr>
+              <tr><td>Ownership</td><td>Single organization</td><td>Single/multiple org.</td><td>Multiple organizations</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q10</span>
+            <span class="q-text">What is a computer network? Mention any two advantages of networking.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2020</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Computer Network:</strong> An interconnection of two or more computing devices that can communicate and share resources (files, printers, internet) using a communication medium.</p>
+            <p><strong>Advantages:</strong></p>
+            <ul>
+              <li><strong>Resource Sharing:</strong> Hardware (printers), software, and data can be shared among connected users.</li>
+              <li><strong>Reliability:</strong> If one machine fails, others can take over; data can be backed up across machines.</li>
+              <li><strong>Reduced Cost:</strong> Eliminates need for separate peripheral devices for each user.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-label">Network Hardware Devices — Board 2008–2025</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q11</span>
+            <span class="q-text">What is a Modem? Where is it used?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2008</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Modem</strong> (Modulator-Demodulator) converts digital signals from a computer to analog signals for transmission over telephone/cable lines (<em>modulation</em>), and converts received analog signals back to digital (<em>demodulation</em>). It is used to connect computers to the Internet via ISP telephone or cable infrastructure.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q12</span>
+            <span class="q-text">Identify the following devices:<br>(i) An intelligent device that connects several nodes and redirects received information only to the intended node(s).<br>(ii) A device that regenerates (amplifies) the received signal and re-transmits it.</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2014</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(i) Switch</strong> — uses MAC address table to send data only to the intended recipient device, not to all ports.</p>
+            <p><strong>(ii) Repeater</strong> — receives a weakened signal, amplifies/regenerates it, and retransmits it to extend network range. Works at Physical Layer.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q13</span>
+            <span class="q-text">Differentiate between a Switch and a Hub.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2019</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Hub</th><th>Switch</th></tr>
+              <tr><td>Broadcasts data to <strong>ALL</strong> ports</td><td>Sends data only to <strong>intended destination</strong> device</td></tr>
+              <tr><td>Works at Physical Layer (Layer 1)</td><td>Works at Data Link Layer (Layer 2)</td></tr>
+              <tr><td>Less efficient; causes collisions</td><td>More efficient; reduces/eliminates collisions</td></tr>
+              <tr><td>Half-duplex only</td><td>Full-duplex communication possible</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q14</span>
+            <span class="q-text">What is the function of a Router in a network?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2017</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p>A <strong>Router</strong> connects two or more different networks (e.g., LAN to Internet). It reads IP addresses and determines the best path (route) for data packets across networks. It operates at the <strong>Network Layer (Layer 3)</strong> of the OSI model.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q15</span>
+            <span class="q-text">Beauty Lines Fashion Inc. has a design unit and market unit 135 m apart. After connecting their LANs using Ethernet cable, they cannot share information due to signal loss. Which device should be installed?<br>(i) UPS &nbsp; (ii) Modem &nbsp; (iii) Repeater</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2011</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(iii) Repeater</strong> — Standard Ethernet cable (UTP) has a maximum segment length of ~100 m. At 135 m, the signal degrades. A Repeater regenerates the signal, allowing it to travel the extended distance without loss.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q16</span>
+            <span class="q-text">Mr. Kant Sen Gupta wants to prevent unauthorised access to/from his company's LAN. Name a system (software/hardware) he should install.</span>
+            <div class="q-meta"><span class="tag tag-year">All India 2011</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Firewall</strong> — A Firewall (hardware or software) monitors and filters incoming/outgoing network traffic based on security rules, preventing unauthorized access between the trusted internal network and external networks like the Internet.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q17</span>
+            <span class="q-text">Differentiate between a Repeater and a Gateway.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Repeater:</strong> Receives a weakened signal and retransmits it at original strength to extend network range. Works at Physical Layer; does NOT filter or route traffic.</p>
+            <p><strong>Gateway:</strong> Connects networks using different protocols, translating between incompatible protocols. Acts as an entry/exit point between two different networks. Works at all OSI layers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 2: TOPOLOGY & MEDIA
+  ════════════════════════════════════ -->
+  <div class="section" id="topology">
+    <div class="section-title">Topology &amp; Transmission Media</div>
+    <div class="section-desc">Network layout types and physical media — sourced from Board Papers 2008–2021.</div>
+    <button class="expand-btn" onclick="expandAll('topology',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">Topologies</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q18</span>
+            <span class="q-text">Differentiate between Star topology and Bus topology of a network.</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2009</span><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Star Topology</th><th>Bus Topology</th></tr>
+              <tr><td>All nodes connected to a central hub/switch</td><td>All nodes connected to one backbone cable</td></tr>
+              <tr><td>Failure of one node doesn't affect others</td><td>Failure of backbone cable disrupts entire network</td></tr>
+              <tr><td>Easier to add/remove nodes</td><td>Harder to add nodes without disrupting network</td></tr>
+              <tr><td>Higher cable cost (separate cable per node)</td><td>Lower cable cost</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q19</span>
+            <span class="q-text">What is the name of the network topology in which each node is connected independently using a switch?</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2014</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Star Topology</strong> — In star topology, each node has a dedicated connection to the central switch/hub, making it independent of other nodes.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q20</span>
+            <span class="q-text">In which topology is a central device like a hub used? What is the disadvantage if this central device fails?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2021</span><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Star Topology</strong> uses a central hub or switch.</p>
+            <p><strong>Disadvantage if central device fails:</strong> The entire network collapses — a <em>single point of failure</em>. Since all communication passes through the central device, no node can communicate with any other node if it goes down.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-label">Transmission Media</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q21</span>
+            <span class="q-text">How is a coaxial cable different from an optical fibre?</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2008</span><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Coaxial Cable</th><th>Optical Fibre</th></tr>
+              <tr><td>Uses copper conductor</td><td>Uses thin glass/plastic strands</td></tr>
+              <tr><td>Transmits electrical signals</td><td>Transmits light pulses (photons)</td></tr>
+              <tr><td>Susceptible to EMI</td><td>Immune to electromagnetic interference</td></tr>
+              <tr><td>Lower bandwidth</td><td>Very high bandwidth (Tbps possible)</td></tr>
+              <tr><td>Less expensive</td><td>More expensive to install</td></tr>
+              <tr><td>Used in cable TV, older LANs</td><td>Used in backbone, long-distance networks</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q22</span>
+            <span class="q-text">Write two advantages of using an optical fibre cable over an Ethernet cable to connect two service stations 190 m away.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2016</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <ul>
+              <li><strong>No EMI interference:</strong> Optical fibre transmits light, so it is immune to electromagnetic and radio frequency interference that affects copper cables.</li>
+              <li><strong>Greater range without signal loss:</strong> At 190 m, an Ethernet cable would experience significant attenuation (max ~100 m); optical fibre can transmit over much greater distances without a repeater.</li>
+              <li><em>(Also acceptable: Higher bandwidth, lighter weight, more secure.)</em></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q23</span>
+            <span class="q-text">Name any two wireless transmission media. State one advantage of wireless over wired media.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2015</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Wireless Media:</strong> Radio Waves (Wi-Fi/Bluetooth), Microwave (satellite/terrestrial), Infrared (IR devices).</p>
+            <p><strong>Advantage:</strong> Provides mobility — devices can connect without physical cables, enabling use of laptops, mobiles, and connectivity over difficult terrain where cabling is impractical.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 3: PROTOCOLS & INTERNET
+  ════════════════════════════════════ -->
+  <div class="section" id="protocols">
+    <div class="section-title">Protocols &amp; Internet Services</div>
+    <div class="section-desc">TCP/IP, DNS, HTTP/HTTPS, URL, Cloud, IoT — verified from CBSE Board 2008–2025 and SQPs.</div>
+    <button class="expand-btn" onclick="expandAll('protocols',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">Protocols — Board 2009–2024</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q24</span>
+            <span class="q-text">What is a protocol? Which protocol is used to (a) browse websites (b) transfer files from a remote server?</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2009</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Protocol:</strong> A set of standardized rules governing how data is formatted, transmitted, received, and acknowledged between communicating devices.</p>
+            <p>(a) <strong>HTTP / HTTPS</strong> — for browsing websites.</p>
+            <p>(b) <strong>FTP (File Transfer Protocol)</strong> — for copying files to/from a remote server.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q25</span>
+            <span class="q-text">Differentiate between TCP and UDP protocols.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2020, SQP 2023</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>TCP (Transmission Control Protocol)</th><th>UDP (User Datagram Protocol)</th></tr>
+              <tr><td>Connection-oriented</td><td>Connectionless</td></tr>
+              <tr><td>Guarantees delivery (acknowledgement)</td><td>No guarantee of delivery</td></tr>
+              <tr><td>Slower but reliable</td><td>Faster but unreliable</td></tr>
+              <tr><td>Email, file transfer, web browsing</td><td>Live video/audio streaming, DNS, gaming</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q26</span>
+            <span class="q-text">What is VoIP? Give one application.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2019</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>VoIP (Voice over Internet Protocol)</strong> allows voice calls and audio-video communication over the Internet instead of traditional telephone lines. It converts voice into digital data packets and transmits them via IP.</p>
+            <p><strong>Application:</strong> Skype, Google Meet, Zoom, WhatsApp voice/video calls.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q27</span>
+            <span class="q-text">Differentiate between circuit switching and packet switching.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2021, 2023</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Circuit Switching</th><th>Packet Switching</th></tr>
+              <tr><td>Dedicated path established before data transfer</td><td>Data split into packets; each may take different routes</td></tr>
+              <tr><td>Resources reserved for entire communication</td><td>Resources dynamically shared among users</td></tr>
+              <tr><td>Less efficient (idle bandwidth wasted)</td><td>More efficient bandwidth use</td></tr>
+              <tr><td>Traditional telephone networks (PSTN)</td><td>Internet (IP-based networks)</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-label">DNS, URL, HTTP/HTTPS — Board 2018–2024</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q28</span>
+            <span class="q-text">Identify the Domain name and URL from the following:<br>http://www.income.in/home/aboutus.html</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2018</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>URL (Uniform Resource Locator):</strong> <code>http://www.income.in/home/aboutus.html</code> — the complete address locating a specific resource on the web.</p>
+            <p><strong>Domain Name:</strong> <code>income.in</code> — the registered hostname of the web server.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q29</span>
+            <span class="q-text">What is DNS? Why is it needed?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2022, SQP 2025</span><span class="tag tag-marks">2M</span><span class="tag tag-imp">Imp</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>DNS (Domain Name System)</strong> translates human-readable domain names (e.g., www.google.com) into IP addresses (e.g., 142.250.195.46) that computers use to communicate.</p>
+            <p><strong>Why needed:</strong> Every device on the internet uses a numerical IP address, which is hard for humans to remember. DNS acts as the Internet's phone book, allowing users to type easy names instead of numeric IP addresses.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q30</span>
+            <span class="q-text">Define the term bandwidth with respect to networks.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023-24</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Bandwidth</strong> is the maximum rate of data transfer over a given transmission medium, measured in bits per second (bps) or multiples (Kbps, Mbps, Gbps). It represents the capacity of the network channel — the higher the bandwidth, the more data can be transmitted per second.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q31</span>
+            <span class="q-text">HTTPS (HyperText Transfer Protocol Secure) uses _______ to encrypt data transmitted over the Internet. How is it different from HTTP?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023-24</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p>HTTPS uses <strong>SSL/TLS (Secure Socket Layer / Transport Layer Security)</strong> to encrypt data.</p>
+            <p><strong>HTTPS vs HTTP:</strong> HTTPS encrypts all data between browser and server, protecting passwords and sensitive information from interception. HTTP transmits data as plain text — visible to any intermediary. HTTPS is indicated by a padlock icon in browsers.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q32</span>
+            <span class="q-text">What is cloud computing? Name any two services offered under cloud computing (e.g., SaaS, IaaS, PaaS).</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2023, 2024</span><span class="tag tag-marks">2M</span><span class="tag tag-imp">Imp</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Cloud Computing:</strong> Delivery of computing services (servers, storage, databases, software) over the Internet on a pay-as-you-use basis, without the user needing to manage physical hardware.</p>
+            <ul>
+              <li><strong>SaaS (Software as a Service):</strong> Software via internet — Google Docs, Microsoft 365.</li>
+              <li><strong>IaaS (Infrastructure as a Service):</strong> Virtualized hardware — AWS EC2, Azure.</li>
+              <li><strong>PaaS (Platform as a Service):</strong> App development platform — Google App Engine, Heroku.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q33</span>
+            <span class="q-text">What is IoT (Internet of Things)? Give two examples of IoT devices.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2024, SQP 2025</span><span class="tag tag-marks">2M</span><span class="tag tag-imp">Imp</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>IoT (Internet of Things):</strong> A network of physical objects embedded with sensors, software, and connectivity that enables them to collect and exchange data over the Internet without requiring human-to-human interaction.</p>
+            <p><strong>Examples:</strong> Smart thermostat, smart refrigerator, fitness tracker/smartwatch, smart street lights, connected CCTV cameras.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q34</span>
+            <span class="q-text">What is web hosting? What does a web server do?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2019, SQP 2022</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Web Hosting:</strong> A service that stores website files on a server so the website can be accessed via the Internet. Companies provide servers and infrastructure for hosting.</p>
+            <p><strong>Web Server:</strong> A computer/software that stores web pages and serves them to clients (browsers) when requested via HTTP/HTTPS. Examples: Apache, Nginx, IIS.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q35</span>
+            <span class="q-text">Differentiate between IPv4 and IPv6.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2022, SQP 2024</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>IPv4</th><th>IPv6</th></tr>
+              <tr><td>32-bit address</td><td>128-bit address</td></tr>
+              <tr><td>~4.3 billion unique addresses</td><td>~340 undecillion addresses</td></tr>
+              <tr><td>Example: 192.168.1.1</td><td>Example: 2001:db8::8a2e:370:7334</td></tr>
+              <tr><td>Running out of addresses</td><td>Virtually inexhaustible</td></tr>
+            </table>
+            <p>IPv6 introduced to solve IPv4 address exhaustion from explosion of internet devices.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 4: SECURITY & ETHICS
+  ════════════════════════════════════ -->
+  <div class="section" id="security">
+    <div class="section-title">Security, Ethics &amp; Open Source</div>
+    <div class="section-desc">Cybersecurity threats, ethical issues, open-source software — sourced from Board 2008–2023.</div>
+    <button class="expand-btn" onclick="expandAll('security',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">Cyber Threats & Security</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q36</span>
+            <span class="q-text">How is a Hacker different from a Cracker?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2008</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Hacker:</strong> Gains unauthorized access primarily out of intellectual curiosity or to expose vulnerabilities (often without malicious intent). "White hat" hackers help organizations improve security.</p>
+            <p><strong>Cracker:</strong> Breaks into systems with malicious intent — to steal data, cause damage, or commit fraud. Always illegal and harmful.</p>
+            <p><em>Key difference: Intent. Hackers are curious explorers; crackers are malicious attackers.</em></p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q37</span>
+            <span class="q-text">What is a virus? How is it different from a worm?</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2013, Board 2020</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Virus</th><th>Worm</th></tr>
+              <tr><td>Needs a host file to attach to</td><td>Standalone — no host needed</td></tr>
+              <tr><td>Spreads when infected file is opened</td><td>Self-replicates across network automatically</td></tr>
+              <tr><td>Requires human action to spread</td><td>Spreads without human intervention</td></tr>
+              <tr><td>Example: Melissa virus</td><td>Example: ILOVEYOU worm</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q38</span>
+            <span class="q-text">What is phishing? How can a user protect himself from phishing attacks?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2022, SQP 2024</span><span class="tag tag-marks">2M</span><span class="tag tag-imp">Imp</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Phishing:</strong> A cybercrime where attackers impersonate trusted entities (banks, companies) via fake emails/websites to trick users into revealing passwords, credit card numbers, or personal data.</p>
+            <p><strong>Protection:</strong></p>
+            <ul>
+              <li>Never click suspicious links in emails</li>
+              <li>Verify sender's email address carefully</li>
+              <li>Check for HTTPS and padlock icon in URLs</li>
+              <li>Enable Two-Factor Authentication (2FA)</li>
+              <li>Use anti-phishing browser extensions and updated antivirus</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q39</span>
+            <span class="q-text">What is meant by "Denial of Service" (DoS) with reference to Internet service?</span>
+            <div class="q-meta"><span class="tag tag-year">Delhi 2014</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Denial of Service (DoS):</strong> A type of cyber attack in which a machine or network resource is made unavailable to its intended users by overwhelming it with excessive requests/traffic, causing it to crash or become unresponsive. A DoS attack does not typically allow the attacker to access or modify information — it simply denies service to legitimate users. A DDoS (Distributed DoS) uses multiple systems to launch the attack simultaneously.</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q40</span>
+            <span class="q-text">What is a Trojan Horse in computing?</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2018</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p>A <strong>Trojan Horse</strong> is malicious software disguised as legitimate software (game, utility, or email attachment). When run, it secretly performs harmful actions such as stealing data, creating backdoors for hackers, or damaging the system — all without the user's knowledge.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-label">Open Source & Licensing</div>
+      <div class="q-list">
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q41</span>
+            <span class="q-text">What is open-source software? Give two examples.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2017, 2020</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Open-source software (OSS):</strong> Software whose source code is freely available for anyone to view, use, modify, and distribute, typically developed collaboratively.</p>
+            <p><strong>Examples:</strong> Linux (OS), LibreOffice (office suite), Mozilla Firefox (browser), Python (language), Apache (web server), VLC (media player).</p>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">Q42</span>
+            <span class="q-text">Differentiate between freeware and open-source software.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>Freeware</th><th>Open-Source Software</th></tr>
+              <tr><td>Free to use; source code NOT available</td><td>Source code freely available</td></tr>
+              <tr><td>Cannot be modified</td><td>Can be modified and redistributed</td></tr>
+              <tr><td>Adobe Acrobat Reader, Skype</td><td>Linux, Firefox, VLC, LibreOffice</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 5: HOTS + COMPETENCY
+  ════════════════════════════════════ -->
+  <div class="section" id="hots">
+    <div class="section-title">HOTS + Competency-Based Questions</div>
+    <div class="section-desc">Higher-Order Thinking &amp; Application/Reasoning questions. Competency questions test real-world understanding — new pattern from 2021 onwards.</div>
+    <button class="expand-btn" onclick="expandAll('hots',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">HOTS — Application & Reasoning</div>
+      <div class="q-list">
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H1</span>
+            <span class="q-text">A school wants to connect its 5 computer labs spread across 3 buildings within its campus. Which network type (LAN/MAN/WAN) would you recommend? Justify.</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>LAN (Local Area Network)</strong> is recommended. All buildings are within the same school campus — a confined area (typically under 1 km). LAN is designed precisely for connecting devices within a limited area belonging to a single organization. MAN is city-level; WAN is country/global — neither applies here.</p>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H2</span>
+            <span class="q-text">If a network administrator has a choice between a Hub and a Switch for a company's LAN, which should he prefer and why?</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p>The administrator should prefer a <strong>Switch</strong>.</p>
+            <ul>
+              <li>A switch sends data only to the intended destination (using MAC addresses); a hub broadcasts to all — causing unnecessary congestion.</li>
+              <li>Switches reduce collisions and improve performance.</li>
+              <li>Switches support full-duplex; hubs are half-duplex.</li>
+              <li>Switches provide better security (data not exposed to all ports).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H3</span>
+            <span class="q-text">You visit a website and notice the URL starts with "https://" instead of "http://". What does the 's' signify and why is it important?</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p>The <strong>'s'</strong> stands for <strong>Secure</strong>. HTTPS uses <strong>SSL/TLS encryption</strong> to encrypt all data between browser and server, protecting passwords and financial data from interception (man-in-the-middle attacks). It also verifies the website's authenticity via digital certificates. Critical for banking, e-commerce, and login pages.</p>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H4</span>
+            <span class="q-text">Two people are video calling each other. Which protocol — TCP or UDP — is more suitable for this real-time communication? Give reasons.</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>UDP (User Datagram Protocol)</strong> is more suitable for video calls.</p>
+            <ul>
+              <li><strong>Speed over reliability:</strong> Video calls are real-time — TCP's retransmission of lost packets causes disruptive delays.</li>
+              <li><strong>Low latency:</strong> UDP doesn't wait for acknowledgements, maintaining continuous low-latency flow.</li>
+              <li>Dropping occasional packets causes a brief glitch (acceptable). TCP's "wait and retransmit" causes noticeable freezes.</li>
+            </ul>
+            <p>Zoom, Teams, and Skype use UDP (or RTP over UDP) for live media.</p>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H5</span>
+            <span class="q-text">Why is Optical Fibre preferred over Coaxial Cable for long-distance high-speed internet backbone communication?</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <ul>
+              <li><strong>Extremely high bandwidth:</strong> Optical fibre can carry terabits/sec; coaxial is limited.</li>
+              <li><strong>No electromagnetic interference:</strong> Light pulses are unaffected by electrical noise.</li>
+              <li><strong>Low signal attenuation:</strong> Signals travel far without weakening — fewer repeaters needed.</li>
+              <li><strong>Security:</strong> Very difficult to tap without detection.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H6</span>
+            <span class="q-text">Meena uses the same password for her bank account and social media. Her social media account is hacked. Explain what additional risk she faces and what she should do immediately.</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Risk — Credential Stuffing:</strong> The hacker will try the same username/password on banking and other sites. Her bank account is at serious risk.</p>
+            <p><strong>Immediate actions:</strong></p>
+            <ul>
+              <li>Immediately change passwords on ALL accounts, especially banking</li>
+              <li>Enable Two-Factor Authentication (2FA) everywhere</li>
+              <li>Use unique, strong passwords for each account (use a password manager)</li>
+              <li>Monitor bank transactions for suspicious activity</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q-card hots">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">H7</span>
+            <span class="q-text">A student installed free software from an unknown website. After a few days, the college server started sending spam emails to all contacts automatically. Identify the type of malware and explain how it worked.</span>
+            <div class="q-meta"><span class="tag tag-hots">HOTS</span><span class="tag tag-marks">3M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Trojan Horse (with Bot/Spam functionality)</strong></p>
+            <ul>
+              <li>The software appeared legitimate but contained hidden malicious code.</li>
+              <li>When installed, it opened a backdoor giving remote control to an attacker.</li>
+              <li>The compromised server became a <em>bot</em> in a botnet, sending spam using the server's legitimate email credentials.</li>
+            </ul>
+            <p><strong>Prevention:</strong> Only download from trusted official sources; use antivirus; enable firewall.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-label">Competency-Based Questions (CBQs) — New Pattern 2021–2025</div>
+      <div class="q-list">
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C1</span>
+            <span class="q-text">An IT-based firm is planning to set up a network for its branches. Suggest an ideal layout (topology) to connect the branches and justify your choice.</span>
+            <div class="q-meta"><span class="tag tag-year">Board 2024</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Star Topology</strong> is ideal for connecting branches.</p>
+            <p><strong>Justification:</strong> In star topology, each branch connects to a central hub/switch. It is easy to add new branches, simple to troubleshoot, and failure of one branch does not affect others. The central hub provides centralized management and monitoring of all network traffic.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C2</span>
+            <span class="q-text">Assertion (A): In Star topology, if the central switch fails, all communication in the network stops.<br>Reason (R): In Star topology, all devices are connected to a central switch/hub.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP/Board 2023</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(A) Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of Assertion (A).</strong></p>
+            <p>Since all devices connect through the central switch, failure of that central device cuts off all inter-device communication. This is the correct explanation — it is the centralised architecture that makes the network vulnerable to a single point of failure.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C3</span>
+            <span class="q-text">Assertion (A): A primary key must be unique and cannot have NULL values.<br>Reason (R): The primary key uniquely identifies each row in the table.<br><em>(Note: This is a DB question but also tests network of data.)</em></span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(A) Both A and R are True and R is the correct explanation for A.</strong></p>
+            <p>A primary key must uniquely identify every row, which is why it cannot have duplicate or NULL values — the reason directly explains the assertion.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C4</span>
+            <span class="q-text">Which type of network (PAN, LAN, MAN, or WAN) will be formed while connecting the Hyderabad campus to Bengaluru Headquarters?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>WAN (Wide Area Network)</strong> — Hyderabad and Bengaluru are cities in different geographic locations, hundreds of kilometres apart. Any network connecting two offices across such distances constitutes a WAN. LAN is for same-campus (up to ~1 km); MAN is city-level; WAN is inter-city/country.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C5</span>
+            <span class="q-text">A hub sends data to all devices in a network. A switch sends data to the specific device. Which one is better in a high-traffic office network and why? <em>(Competency: Justify with reason.)</em></span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Switch</strong> is better in a high-traffic office network.</p>
+            <p><strong>Reason:</strong> A switch reads the destination MAC address of each packet and forwards it only to the correct port. This eliminates unnecessary traffic and collisions, significantly improving network efficiency, speed, and security in high-traffic environments.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C6</span>
+            <span class="q-text">An organization's office is located in a hilly region where cable installation is not feasible. Suggest the most suitable and economical wireless medium to connect their remote office with reasonable high speed.</span>
+            <div class="q-meta"><span class="tag tag-year">CBSE 2019 Case, 2013</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Satellite Communication / Microwave (via satellite link)</strong> is most suitable for hilly terrain. It provides wide coverage regardless of geographical obstacles and supports reasonable data speeds. Radio Waves via repeater towers are an alternative for shorter inter-office distances in hilly areas.</p>
+          </div>
+        </div>
+
+        <div class="q-card comp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">C7</span>
+            <span class="q-text">The modem at the sender's computer end acts as a ______. (Fill in the blank — Competency MCQ)</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2023-24</span><span class="tag tag-comp">Competency</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Modulator</strong> — At the sending end, the modem <em>modulates</em> (converts) the digital data from the computer into analog signals suitable for transmission over telephone/cable lines. At the receiving end, it <em>demodulates</em> analog signals back to digital.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 6: CASE-BASED (5M)
+  ════════════════════════════════════ -->
+  <div class="section" id="case">
+    <div class="section-title">Case-Based Questions (5 Marks)</div>
+    <div class="section-desc">Real network planning scenarios from CBSE Board Papers. Every question is verified against the actual paper. These appear every year.</div>
+    <button class="expand-btn" onclick="expandAll('case',this)">▼ Expand All Answers</button>
+
+    <div class="q-list">
+
+      <!-- 2025 BOARD -->
+      <div class="year-div">CBSE Board 2025 — Actual Question Q.37 (Set 91, Code 083)</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB1</span>
+          <span class="q-text"><strong>'Swabhaav'</strong> is an NGO for Psychological Treatment, Head Office in Nagpur. Setting up a center in Vijayawada with 4 blocks — ADMIN, PSYCHIATRY, PSYCHOLOGY, ICU.
+            <br><br>Block distances: ADMIN–PSYCHIATRY 65m | ADMIN–PSYCHOLOGY 65m | ADMIN–ICU 65m | PSYCHIATRY–PSYCHOLOGY 100m | PSYCHIATRY–ICU 50m | PSYCHOLOGY–ICU 50m
+            <br>Computers: ADMIN–16 | PSYCHIATRY–40 | PSYCHOLOGY–19 | ICU–20
+            <br>Nagpur HQ to Vijayawada = 700 km
+            <br><br>(i) Suggest the most appropriate server location inside Vijayawada Center. Justify.
+            <br>(ii) Which hardware device to connect all computers within each block?
+            <br>(iii) Draw a cable layout to connect all blocks.
+            <br>(iv) Where should the router be placed?
+            <br>(v)(a) Manager in Nagpur wants to remotely access Admin block. Which protocol? OR (v)(b) Which network type (PAN/LAN/MAN/WAN) among Vijayawada Center computers?</span>
+          <div class="q-meta"><span class="tag tag-year">Board 2025</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(i) Server: PSYCHIATRY Block</strong> — It has the maximum number of computers (40) and is centrally connected (50–100 m from others). <em>Also accepted: ADMIN (most secure; closest to all blocks at 65 m each).</em></p>
+          <p><strong>(ii) Hardware device: Switch</strong> — connects all computers within each block efficiently (sends data only to the intended device).</p>
+          <p><strong>(iii) Cable Layout:</strong></p>
+          <pre class="layout">
+    ADMIN ─(65m)─ PSYCHIATRY ─(50m)─ ICU
+      │                                │
+    PSYCHOLOGY ────────(50m)───────────┘
+(ADMIN–PSYCHOLOGY = 65m)
+
+Star around ADMIN is also acceptable:
+       PSYCHIATRY
+          │(65m)
+ICU─(65m)─ADMIN─(65m)─PSYCHOLOGY</pre>
+          <p><strong>(iv) Router: Placed in PSYCHIATRY block</strong> (where the server is), allowing internet distribution to all switches throughout the center.</p>
+          <p><strong>(v)(a) Protocol for remote access: SSH (Secure Shell)</strong> or <strong>RDP (Remote Desktop Protocol)</strong> — SSH for Linux systems; RDP for Windows.</p>
+          <p><strong>(v)(b) Network type among Vijayawada Center computers: LAN</strong> — All blocks are within one campus, forming a Local Area Network.</p>
+        </div>
+      </div>
+
+      <!-- 2024 BOARD -->
+      <div class="year-div">CBSE Board 2024 — Actual Question Q.33</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB2</span>
+          <span class="q-text"><strong>Infotainment Ltd.</strong> is an event management company with prime office in Bengaluru. Opening new division in Chennai at 3 locations: Vajra, Trishula, and Sudershana.
+            <br><br>Distances (in metres): Vajra–Trishula: 60m | Vajra–Sudershana: 70m | Trishula–Sudershana: 80m
+            <br>Computers: Vajra–120 | Trishula–50 | Sudershana–30
+            <br><br>(i) Suggest and draw the cable layout to efficiently connect various locations in Chennai division.
+            <br>(ii) Which block in Chennai division should host the server? Justify.
+            <br>(iii) Which fast and effective <em>wired</em> transmission medium should be used to connect the Bengaluru prime office with Chennai division?
+            <br>(iv) Which network device will be used to connect digital devices within each location of Chennai division?
+            <br>(v) Is a repeater required in the given cable layout? Why/Why not?</span>
+          <div class="q-meta"><span class="tag tag-year">Board 2024</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(i) Cable Layout (Star or linear):</strong></p>
+          <pre class="layout">
+  Trishula ─(60m)─ Vajra ─(70m)─ Sudershana
+OR
+  Trishula─Vajra─Sudershana (all distances &lt;100m, no repeater needed)</pre>
+          <p><strong>(ii) Server: Vajra</strong> — It has the maximum number of computers (120). Placing the server here minimizes network traffic and response time for the majority of users.</p>
+          <p><strong>(iii) Wired medium for Bengaluru–Chennai: Optical Fibre Cable</strong> — Supports very high-speed data transfer over long distances with minimal signal loss. Ideal for inter-city backbone connections.</p>
+          <p><strong>(iv) Network device within each location: Switch</strong> — Efficiently connects multiple computers; sends data only to the intended device, reducing congestion.</p>
+          <p><strong>(v) Repeater required? No</strong> — The maximum distance between any two locations is 80 m (Trishula–Sudershana), which is within the standard Ethernet 100 m limit. No repeater is needed.</p>
+        </div>
+      </div>
+
+      <!-- 2015 BOARD -->
+      <div class="year-div">CBSE Board 2015 — Delhi</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB3</span>
+          <span class="q-text"><strong>Perfect Edu Services Ltd.</strong> setting up campus in Chennai; Head Office in Delhi.
+            <br>4 buildings: ADMIN, ENGINEERING, BUSINESS, MEDIA.
+            <br>Distances: ADMIN–ENGINEERING 50m | ADMIN–BUSINESS 90m | ADMIN–MEDIA 110m | ENGINEERING–BUSINESS 60m | BUSINESS–MEDIA 80m
+            <br>Computers: ADMIN–25 | ENGINEERING–50 | BUSINESS–140 | MEDIA–30
+            <br><br>(i) Draw cable layout for all 4 buildings. (ii) Best location for main server — justify. (iii) Device used within each building to connect computers. (iv) Network type between Delhi and Chennai. (v) Connection needed between Delhi and Chennai.</span>
+          <div class="q-meta"><span class="tag tag-year">Delhi 2015</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(i) Cable Layout:</strong></p>
+          <pre class="layout">
+ENGINEERING─(50m)─ADMIN─(90m)─BUSINESS─(80m)─MEDIA
+(Shortest path spanning all buildings)</pre>
+          <p><strong>(ii) Server: BUSINESS building</strong> — Maximum computers (140). Reduces network latency for most users.</p>
+          <p><strong>(iii) Device: Switch</strong></p>
+          <p><strong>(iv) Network type Delhi–Chennai: WAN (Wide Area Network)</strong> — Two offices in different cities far apart.</p>
+          <p><strong>(v) Connection: Leased Line / Optical Fibre backbone / Satellite</strong> — Leased line provides dedicated, high-speed, always-on connectivity between two distant offices.</p>
+        </div>
+      </div>
+
+      <!-- 2013 BOARD -->
+      <div class="year-div">CBSE Board 2013 — All India</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB4</span>
+          <span class="q-text"><strong>Expertia Professional Global (EPG)</strong> — online IT training company — new campus in Mumbai.
+            <br>3 buildings: Administrative (Admn), Library, Faculty Studio.
+            <br>Distances: Admn–Library 60m | Library–Faculty Studio 70m | Admn–Faculty Studio 120m
+            <br>Computers: Admn–30 | Library–20 | Faculty Studio–80
+            <br>EPG also has a front office in a hilly remote area.
+            <br><br>(i) Suggest cable layout. (ii) Best building for server — justify. (iii) Suggest efficient device within each building. (iv) Suitable medium for the remote hilly front office where cable is not feasible. (v) Protocol/service for global audio-video communication.</span>
+          <div class="q-meta"><span class="tag tag-year">All India 2013</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(i) Cable Layout (using shortest distances):</strong></p>
+          <pre class="layout">Administrative ─(60m)─ Library ─(70m)─ Faculty Studio</pre>
+          <p><strong>(ii) Server: Faculty Studio</strong> — Maximum computers (80).</p>
+          <p><strong>(iii) Device: Switch</strong></p>
+          <p><strong>(iv) Hilly remote area: Satellite Communication / Radio Waves (Microwave)</strong> — No cable infrastructure required; provides wide coverage over difficult terrain.</p>
+          <p><strong>(v) Global audio-video: VoIP (Voice over Internet Protocol)</strong> — Used by Zoom, Skype, Google Meet for worldwide real-time audio/video communication over the internet.</p>
+        </div>
+      </div>
+
+      <!-- 2012 BOARD -->
+      <div class="year-div">CBSE Board 2012 — Faridabad Case</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB5</span>
+          <span class="q-text"><strong>Granuda Consultants</strong> — setting up campus at Faridabad; head office in Kolkata.
+            <br>3 buildings: "RAVI", "JAMUNA", "GANGA"
+            <br>Distances: RAVI–JAMUNA 120m | RAVI–GANGA 50m | GANGA–JAMUNA 65m
+            <br>Computers: RAVI–25 | JAMUNA–150 | GANGA–41
+            <br>Faridabad to Kolkata HQ: 1460 km
+            <br><br>(a) Best building for server — justify. (b) Suggest cable layout. (c)(i) Placement of Switch and Repeater with justification. (d) Suggest transmission medium for Faridabad–Kolkata link.</span>
+          <div class="q-meta"><span class="tag tag-year">Board 2012</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(a) Server: JAMUNA</strong> — Maximum computers (150).</p>
+          <p><strong>(b) Cable Layout:</strong></p>
+          <pre class="layout">RAVI─(50m)─GANGA─(65m)─JAMUNA
+(RAVI–JAMUNA is 120m — use GANGA as relay)</pre>
+          <p><strong>(c)(i) Switch:</strong> One switch in each building to connect all computers within that building.</p>
+          <p><strong>Repeater:</strong> Required between RAVI and JAMUNA (120 m > 100 m standard Ethernet limit). Place repeater midway on this cable run to regenerate the signal.</p>
+          <p><strong>(d) Faridabad–Kolkata transmission medium: Optical Fibre (via leased line) or Satellite link</strong> — For high-speed, reliable, dedicated connectivity across 1460 km.</p>
+        </div>
+      </div>
+
+      <!-- 2009 BOARD -->
+      <div class="year-div">CBSE Board 2009 — All India</div>
+
+      <div class="q-card case">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-num">CB6</span>
+          <span class="q-text"><strong>University campus at Parampur</strong>; head office in Delhi.
+            <br>4 buildings: Administration (Admn), Library, Hostel, Lab.
+            <br>Distances: Admn–Library 50m | Admn–Hostel 80m | Admn–Lab 110m | Library–Hostel 60m
+            <br>Computers: Admn–50 | Library–30 | Hostel–20 | Lab–70
+            <br><br>(i) Suggest cable layout. (ii) Best building for server. (iii) Efficient device within each building — (a) Gateway (b) Modem (c) Switch. (iv) Most suitable high-speed service for Delhi–Parampur — (a) Telephone line (b) Dial-up (c) Coaxial (d) GSM (e) Leased line (f) Satellite.</span>
+          <div class="q-meta"><span class="tag tag-year">All India 2009</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="q-answer">
+          <span class="ans-label">Answer</span>
+          <p><strong>(i) Cable Layout:</strong></p>
+          <pre class="layout">Library─(50m)─Admn─(80m)─Hostel
+                │
+             Lab (110m from Admn)
+             → Repeater needed between Admn and Lab (>100m)</pre>
+          <p><strong>(ii) Server: Lab building</strong> — Maximum computers (70).</p>
+          <p><strong>(iii) Efficient device: (c) Switch</strong> — Connects computers within each building intelligently. Gateway connects different protocol networks; Modem is for analog-digital conversion — neither appropriate here.</p>
+          <p><strong>(iv) Most suitable: (e) Leased Line</strong> — Provides dedicated, high-speed, always-on connection between two fixed locations. More reliable and faster than dial-up, GSM, or coaxial; lower latency than satellite.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 7: SQP 2025-26
+  ════════════════════════════════════ -->
+  <div class="section" id="sqp">
+    <div class="section-title">SQP 2025-26 — For 2026 Board Exam</div>
+    <div class="section-desc">Official CBSE Sample Question Paper 2025-26 (Code 083). Networking questions extracted and verified from the released SQP.</div>
+    <button class="expand-btn" onclick="expandAll('sqp',this)">▼ Expand All Answers</button>
+
+    <div class="topic">
+      <div class="topic-label">SQP 2025-26 — Verified Networking Questions</div>
+      <div class="q-list">
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S1</span>
+            <span class="q-text">A hub sends data to all devices in a network, while a switch sends data to the specific device. Which of the following statements is correct?<br>(A) A hub sends data to all devices in a network, while a switch sends data to the specific device.<br>(B) A hub sends data only to the devices it is connected to, while a switch sends data to all devices.<br>(C) A hub and switch function the same way and can be used interchangeably.<br>(D) A hub and switch are both wireless networking devices.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">1M</span><span class="tag tag-mcq">MCQ</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(A) A hub sends data to all devices in a network, while a switch sends data to the specific device.</strong></p>
+            <p>A hub broadcasts to all ports regardless of destination (collision domain). A switch uses MAC address tables to send data only to the intended recipient port.</p>
+          </div>
+        </div>
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S2</span>
+            <span class="q-text">A modem is a device that helps connect your computer to the internet. It converts digital signals from your device into analog signals for transmission. What is a Gateway?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>Modem:</strong> Converts digital signals to analog (modulation) for transmission over phone/cable lines, and converts received analog back to digital (demodulation).</p>
+            <p><strong>Gateway:</strong> A device that connects two different networks that use different protocols, enabling communication between them. It translates between incompatible network architectures and acts as the entry/exit point for a network. Example: Home router acting as gateway between home LAN and the Internet.</p>
+          </div>
+        </div>
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S3</span>
+            <span class="q-text">Which type of network (PAN, LAN, MAN, or WAN) will be formed while connecting the Hyderabad campus to Bengaluru Headquarters?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>WAN (Wide Area Network)</strong> — Hyderabad and Bengaluru are two different cities separated by over 500 km. Any network connecting offices across large geographic distances forms a WAN.</p>
+          </div>
+        </div>
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S4</span>
+            <span class="q-text">XYZ Technologies, Hyderabad has 4 divisions: ADMIN, SALES, PRODUCTION, SERVICE. Head Office in USA.
+            <br><br>Distances: ADMIN–SALES 30m | ADMIN–PRODUCTION 80m | SALES–SERVICE 50m | PRODUCTION–SERVICE 60m | PRODUCTION–SALES 90m
+            <br>Computers: ADMIN–20 | SALES–15 | PRODUCTION–80 | SERVICE–30
+            <br><br>(i) Suggest topology and cable layout for Hyderabad office. (ii) Which network type between Hyderabad and USA? (iii) Which division for the server? Justify. (iv) Placement of Switch/Hub — justify. (v) Where will a repeater be placed?</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025 / Board 2025 IP</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">5M</span><span class="tag tag-imp">Verified</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(i) Topology: Bus/Star topology.</strong></p>
+            <pre class="layout">
+ADMIN─(30m)─SALES─(50m)─SERVICE
+  │                          │
+PRODUCTION─────(60m)─────────┘
+(PRODUCTION–SALES = 90m, near limit)</pre>
+            <p><strong>(ii) Network type Hyderabad–USA: WAN (Wide Area Network)</strong> — inter-continental distance.</p>
+            <p><strong>(iii) Server: PRODUCTION division</strong> — maximum computers (80). Most network load here.</p>
+            <p><strong>(iv) Switch/Hub placement: One Switch in each division</strong> — switches are preferred over hubs for efficient, collision-free communication within each division.</p>
+            <p><strong>(v) Repeater placement: Between PRODUCTION and SALES</strong> (90 m — near or at Ethernet segment limit of 100 m). A repeater ensures reliable signal over this run. <em>Optionally also between SERVICE and PRODUCTION (90 m).</em></p>
+          </div>
+        </div>
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S5</span>
+            <span class="q-text">Assertion (A): A Python List must always contain all its elements of the same data type.<br>Reason (R): Python lists are heterogeneous — they can hold elements of different data types.</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">1M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <p><strong>(D) A is False but R is True.</strong></p>
+            <p>Python lists are heterogeneous — a single list <em>can</em> hold integers, strings, floats, and other types simultaneously (e.g., <code>[1, "abc", 3.5]</code> is valid). So Assertion (A) is False. Reason (R) correctly explains why.</p>
+          </div>
+        </div>
+
+        <div class="q-card sqp">
+          <div class="q-header" onclick="toggle(this)">
+            <span class="q-num">S6</span>
+            <span class="q-text">Differentiate between DROP and DELETE queries in SQL. (SQP 2025-26 networking-adjacent DB question)</span>
+            <div class="q-meta"><span class="tag tag-year">SQP 2025-26</span><span class="tag tag-sqp">SQP</span><span class="tag tag-marks">2M</span></div>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="q-answer">
+            <span class="ans-label">Answer</span>
+            <table class="t">
+              <tr><th>DELETE</th><th>DROP</th></tr>
+              <tr><td>Removes specific records (rows) from a table</td><td>Removes the entire table or database</td></tr>
+              <tr><td>Table structure is preserved</td><td>Table structure and all data are permanently deleted</td></tr>
+              <tr><td><code>DELETE FROM Emp WHERE ID=5;</code></td><td><code>DROP TABLE Emp;</code></td></tr>
+              <tr><td>DML command (Data Manipulation Language)</td><td>DDL command (Data Definition Language)</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="jeff-footer-logo">JEFF AI</span>
+    <div class="jeff-footer-credit">JEFF AI <span>by Jatan Shah</span></div>
+    <div class="footer-note">CBSE Class XII · Computer Science (083) · Computer Networks · All PYQs 2008–2025 · SQP 2025-26 · HOTS + Competency<br>Questions verified against original CBSE papers. For educational use only.</div>
+  </footer>
+
+</div>
+
+<script>
+  function toggle(header) {
+    header.closest('.q-card').classList.toggle('open');
+  }
+
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function expandAll(sectionId, btn) {
+    const section = document.getElementById(sectionId);
+    const cards = section.querySelectorAll('.q-card');
+    const allOpen = [...cards].every(c => c.classList.contains('open'));
+    cards.forEach(c => allOpen ? c.classList.remove('open') : c.classList.add('open'));
+    btn.textContent = allOpen ? '▼ Expand All Answers' : '▲ Collapse All Answers';
+  }
+</script>
+</body>
+</html>
